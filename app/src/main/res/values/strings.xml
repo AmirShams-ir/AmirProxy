@@ -27,4 +27,7 @@
     <string name="profile_limit">Profile limit reached (13)</string>
     <string name="profile_last">Cannot delete the last profile</string>
     <string name="profile_delete_confirm">Delete profile “%s”?</string>
+    <string name="theme_system">System theme</string>
+    <string name="theme_light">Light theme</string>
+    <string name="theme_dark">Dark theme</string>
 </resources>

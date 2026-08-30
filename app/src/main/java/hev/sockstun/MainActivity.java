@@ -25,12 +25,20 @@ import android.net.VpnService;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+	private static final String THEME_PREFS = "amirproxy_theme";
+	private static final String THEME_MODE = "theme_mode";
+	private static final int THEME_SYSTEM = 0;
+	private static final int THEME_LIGHT = 1;
+	private static final int THEME_DARK = 2;
+
 	private Preferences prefs;
+	private SharedPreferences themePrefs;
 	private TextInputLayout til_socks_addr;
 	private TextInputLayout til_socks_udp_addr;
 	private TextInputLayout til_socks_port;
@@ -55,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	private Button button_control;
 	private Button button_profile_prev;
 	private Button button_profile_next;
+	private Button button_theme;
 	private TextView textview_profile_name;
 
 	/* Refresh the control state when the tunnel is toggled elsewhere
@@ -70,10 +79,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		applySavedTheme();
 		super.onCreate(savedInstanceState);
 		DynamicColors.applyToActivityIfAvailable(this);
 
 		prefs = new Preferences(this);
+		themePrefs = getSharedPreferences(THEME_PREFS, Context.MODE_PRIVATE);
 		setContentView(R.layout.main);
 
 		til_socks_addr = (TextInputLayout) findViewById(R.id.til_socks_addr);
@@ -100,10 +111,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		button_control = (Button) findViewById(R.id.control);
 		button_profile_prev = (Button) findViewById(R.id.profile_prev);
 		button_profile_next = (Button) findViewById(R.id.profile_next);
+		button_theme = (Button) findViewById(R.id.theme);
 		textview_profile_name = (TextView) findViewById(R.id.profile_name);
 
 		button_profile_prev.setOnClickListener(this);
 		button_profile_next.setOnClickListener(this);
+		button_theme.setOnClickListener(this);
 		textview_profile_name.setOnLongClickListener(new View.OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View view) {
@@ -120,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		button_save.setOnClickListener(this);
 		button_control.setOnClickListener(this);
 		updateUI();
+		updateThemeButton();
 
 		/* Request VPN permission */
 		Intent intent = VpnService.prepare(MainActivity.this);
@@ -157,7 +171,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 	@Override
 	public void onClick(View view) {
-		if (view == checkbox_global || view == checkbox_remote_dns) {
+		if (view == button_theme) {
+			showThemeDialog();
+		} else if (view == checkbox_global || view == checkbox_remote_dns) {
 			savePrefs();
 			updateUI();
 		} else if (view == button_apps) {
@@ -182,6 +198,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		} else if (view == button_profile_next) {
 			switchProfile(1);
 		}
+	}
+
+	private void applySavedTheme() {
+		SharedPreferences sp = getSharedPreferences(THEME_PREFS, Context.MODE_PRIVATE);
+		int mode = sp.getInt(THEME_MODE, THEME_SYSTEM);
+		AppCompatDelegate.setDefaultNightMode(toNightMode(mode));
+	}
+
+	private int toNightMode(int mode) {
+		if (mode == THEME_LIGHT)
+		  return AppCompatDelegate.MODE_NIGHT_NO;
+		if (mode == THEME_DARK)
+		  return AppCompatDelegate.MODE_NIGHT_YES;
+		return AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+	}
+
+	private String getThemeLabel(int mode) {
+		if (mode == THEME_LIGHT)
+		  return getString(R.string.theme_light);
+		if (mode == THEME_DARK)
+		  return getString(R.string.theme_dark);
+		return getString(R.string.theme_system);
+	}
+
+	private void updateThemeButton() {
+		int mode = themePrefs.getInt(THEME_MODE, THEME_SYSTEM);
+		button_theme.setText(getThemeLabel(mode));
+	}
+
+	private void showThemeDialog() {
+		final String[] items = {
+			getString(R.string.theme_system),
+			getString(R.string.theme_light),
+			getString(R.string.theme_dark),
+		};
+		final int current = themePrefs.getInt(THEME_MODE, THEME_SYSTEM);
+		new AlertDialog.Builder(this)
+			.setTitle(R.string.theme_system)
+			.setSingleChoiceItems(items, current, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					themePrefs.edit().putInt(THEME_MODE, which).apply();
+					AppCompatDelegate.setDefaultNightMode(toNightMode(which));
+					dialog.dismiss();
+					updateThemeButton();
+				}
+			})
+			.show();
 	}
 
 	private void switchProfile(int direction) {

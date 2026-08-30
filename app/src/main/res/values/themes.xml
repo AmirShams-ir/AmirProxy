@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<style name="Theme.SocksTun" parent="Theme.Material3.DayNight"/>
+    <style name="Theme.SocksTun" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/amir_gray</item>
+        <item name="colorOnPrimary">@color/amir_silver</item>
+        <item name="colorSecondary">@color/amir_silver_dark</item>
+        <item name="colorOnSecondary">@color/amir_gray_dark</item>
+        <item name="colorSurface">@color/amir_silver</item>
+        <item name="colorSurfaceVariant">@color/amir_silver_dark</item>
+        <item name="colorOutline">@color/amir_gray</item>
+    </style>
 </resources>

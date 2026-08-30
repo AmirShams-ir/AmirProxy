@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/amir_silver">
+    android:background="?android:attr/colorBackground">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -21,7 +21,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="48dp"
-                android:textColor="@color/amir_gray_dark"
                 android:text="@string/profile_prev"/>
             <TextView
                 android:id="@+id/profile_name"
@@ -31,7 +30,6 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textColor="@color/amir_gray_dark"
                 android:textAppearance="?attr/textAppearanceTitleMedium"/>
             <Button
                 android:id="@+id/profile_next"
@@ -39,7 +37,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="48dp"
-                android:textColor="@color/amir_gray_dark"
                 android:text="@string/profile_next"/>
         </LinearLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -150,14 +147,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/amir_gray_dark"
                 android:text="@string/remote_dns"/>
             <CheckBox
                 android:id="@+id/udp_in_tcp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/amir_gray_dark"
                 android:text="@string/udp_in_tcp"/>
         </LinearLayout>
         <LinearLayout
@@ -170,21 +165,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/amir_gray_dark"
                 android:text="@string/ipv4"/>
             <CheckBox
                 android:id="@+id/ipv6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/amir_gray_dark"
                 android:text="@string/ipv6"/>
             <CheckBox
                 android:id="@+id/global"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/amir_gray_dark"
                 android:text="@string/global"/>
             <Button
                 android:id="@+id/apps"
@@ -192,7 +184,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/amir_gray_dark"
                 android:text="@string/apps"/>
         </LinearLayout>
         <LinearLayout
@@ -214,5 +205,12 @@
                 android:layout_weight="1"
                 android:text="@string/control_enable"/>
         </LinearLayout>
+        <Button
+            android:id="@+id/theme"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/theme_system"/>
     </LinearLayout>
 </ScrollView>

@@ -8,6 +8,9 @@
         <item name="colorSurface">@color/amir_silver</item>
         <item name="colorSurfaceVariant">@color/amir_silver_dark</item>
         <item name="colorOutline">@color/amir_gray</item>
+        <item name="android:navigationBarColor">@color/amir_gray_dark</item>
+        <item name="android:statusBarColor">@color/amir_gray_dark</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
 </resources>

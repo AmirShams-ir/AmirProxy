@@ -6,12 +6,12 @@ android {
 	ndkVersion "29.0.14206865"
 
 	defaultConfig {
-		applicationId "hev.sockstun"
+		applicationId "ir.amirshams.amirproxy"
 		minSdkVersion 24
 		targetSdkVersion 34
-		versionCode 12
-		versionName "8.0"
-		setProperty("archivesBaseName", "$applicationId-$versionName")
+		versionCode 1
+		versionName "1.0"
+		setProperty("archivesBaseName", "AmirProxy-$versionName")
 		ndk {
 			abiFilters "armeabi-v7a", "arm64-v8a",'x86','x86_64'
 		}
@@ -61,15 +61,11 @@ android {
 
 	lintOptions {
 		checkReleaseBuilds false
-		// Or, if you prefer, you can continue to check for errors in release builds,
-		// but continue the build even when errors are found:
 		abortOnError false
 	}
 
 	dependenciesInfo {
-		// Disables dependency metadata when building APKs.
 		includeInApk = false
-		// Disables dependency metadata when building Android App Bundles.
 		includeInBundle = false
 	}
 }

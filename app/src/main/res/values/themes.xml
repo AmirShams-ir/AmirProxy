@@ -10,7 +10,7 @@
         <item name="colorOutline">@color/amir_gray</item>
         <item name="android:navigationBarColor">@color/amir_gray_dark</item>
         <item name="android:statusBarColor">@color/amir_gray_dark</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 </resources>

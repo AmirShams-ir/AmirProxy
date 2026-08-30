@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SocksTun" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/amir_silver</item>
+        <item name="colorOnPrimary">@color/amir_gray_dark</item>
+        <item name="colorSecondary">@color/amir_silver_dark</item>
+        <item name="colorOnSecondary">@color/amir_silver</item>
+        <item name="colorSurface">@color/amir_gray_dark</item>
+        <item name="colorSurfaceVariant">@color/amir_gray</item>
+        <item name="colorOutline">@color/amir_silver_dark</item>
+        <item name="android:navigationBarColor">@color/amir_gray_dark</item>
+        <item name="android:statusBarColor">@color/amir_gray_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+</resources>

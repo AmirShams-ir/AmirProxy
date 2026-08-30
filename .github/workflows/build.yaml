@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 1
           submodules: true
@@ -45,7 +45,7 @@ jobs:
              AmirProxy-${ref_name}-release.apk
 
       - name: Upload
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: AmirProxy-${{ env.ref_name }}-release.apk
           path: AmirProxy-${{ env.ref_name }}-release.apk
@@ -58,7 +58,7 @@ jobs:
     if: github.event_name == 'release'
 
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           path: release
           pattern: "AmirProxy-*"

@@ -8,5 +8,6 @@
         <item name="colorSurface">@color/amir_silver</item>
         <item name="colorSurfaceVariant">@color/amir_silver_dark</item>
         <item name="colorOutline">@color/amir_gray</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>
